@@ -15,6 +15,8 @@ def sleeeping_noobs(sec):
     #return value to explain how we get it while multiprocessing
     return 'Done'
 
+
+######## MULTIPROCESSING ##########
 # call the process pool executor
 with concurrent.futures.ProcessPoolExecutor() as executor:
     # execute the function using submit
@@ -23,9 +25,20 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     f2 = executor.submit(sleeeping_noobs, 2)
     print(f1.result(), f2.result())
 
+######## MULTITHREADING ###########
+# call the thread pool executor
+with concurrent.futures.ThreadPoolExecutor() as executor2:
+    # execute the function using submit
+    # returns a future object
+    f3 = executor2.submit(sleeeping_noobs, 2)
+    f4 = executor2.submit(sleeeping_noobs, 2)
+    print(f3.result(), f4.result())
 
-# Let's do the same in a loop
 
+
+
+
+# Let's do the same in a loop with list comprehension -> this works similar for both methods
 with concurrent.futures.ProcessPoolExecutor() as executor:
     # we get future objects back -> not results!!!
     results = [executor.submit(sleeeping_noobs,2) for _ in range(5)]
