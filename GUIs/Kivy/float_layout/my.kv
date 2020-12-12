@@ -1,11 +1,22 @@
-<Button>
+# This is a genrelization -> will be inherited to all buttons
+<Button>:
     font_size:40
     color:0.3,0.6,0.7,1
+    # relative size of button class
+    size_hint: 0.3, 0.5
+
 <FloatLayout>:
 
     Button:
+        #possible options for relative positionining
+        #this is basically a dict in ython
+        #pos_hint: {"x", "y", "top", "bottom", "left", "right"}
+        pos_hint: {"x":0.5,"top":1}
         text: "Proof of concept"
 
     Button:
-        text: "Baba"
+        # use states 
+        id: btn
+        text: "Baba" if btn.state == "normal" else "down"
+
 
